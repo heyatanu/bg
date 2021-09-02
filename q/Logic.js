@@ -15,12 +15,12 @@ var url_string = window.location.href
 var url = new URL(url_string);
 var query = url.searchParams.get("q");
 if(query==null){
-    // location.replace("./../404")
+    location.replace("./../404")
 }
 // FROM URL GET THE ID END HERE
 firebase.database().ref('session/' + query).on('value', function(snapshot) {
     if(snapshot.val()==null){
-        // location.replace("./../404")
+        location.replace("./../404")
     }
     else{
         msgfromauth.innerHTML=snapshot.val().msgfromauth;
