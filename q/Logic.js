@@ -27,7 +27,7 @@ firebase.database().ref('session/' + query).on('value', function(snapshot) {
         mainimg.src=snapshot.val().imageurl;
         title.innerHTML=snapshot.val().title;
         document.title=snapshot.val().title;
-        discription.innerTEXT=snapshot.val().discription;
+        discription.innerText=snapshot.val().discription;
         var youurl = new URL(snapshot.val().ytubevdolink);
         var videokeyyoutube = youurl.searchParams.get("v");
         sharetext=title+"- ";
