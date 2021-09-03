@@ -10,7 +10,7 @@ firebase.database().ref('session/').once('value', function(snapshot) {
         let expiredate = childSnapshot.val().expiredate;
         let id = childSnapshot.val().id;
         let imageurl = childSnapshot.val().imageurl;
-        let sdis=discription.slice(0, 150) 
+        let sdis=discription.slice(0, 60) 
         sdis+="..."
         mainarticleurl=homepage+"q/?q="+id;
 
@@ -69,7 +69,7 @@ firebase.database().ref('session/').once('value', function(snapshot) {
                         <div class="metafooter">
                             <div class="wrapfooter">
                                 <span class="meta-footer-thumb">
-                                <img class="author-thumb" src="././../assets/images/author.png" alt="Upload date">
+                                <img class="author-thumb" src="./assets/images/author.png" alt="Upload date">
                                 </span>
                                 <span class="author-meta">
                                 <span class="post-name"><a target="_blank" >Upload Date</a></span><br/>

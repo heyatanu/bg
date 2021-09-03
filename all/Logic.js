@@ -9,7 +9,7 @@ firebase.database().ref('session/').once('value', function(snapshot) {
         let expiredate = childSnapshot.val().expiredate;
         let id = childSnapshot.val().id;
         let imageurl = childSnapshot.val().imageurl;
-        let sdis=discription.slice(0, 150) 
+        let sdis=discription.slice(0, 60) 
         sdis+="..."
         var tags=childSnapshot.val().offerlink;
         tags=tags.toUpperCase();
