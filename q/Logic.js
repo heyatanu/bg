@@ -78,7 +78,6 @@ firebase.database().ref('session/').once('value', function(snapshot) {
         var tags=childSnapshot.val().offerlink;
         tags=tags.toUpperCase();
         let myArr = tags.split(",");
-        shareurl=mainarticleurl;
         if(myArr.includes("DELETE")==false){
             if(myArr.includes("TREND")){
                 feturehtml+=`
