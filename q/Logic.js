@@ -30,7 +30,7 @@ firebase.database().ref('session/' + query).on('value', function(snapshot) {
         discription.innerHTML=snapshot.val().discription;
         var youurl = new URL(snapshot.val().ytubevdolink);
         var videokeyyoutube = youurl.searchParams.get("v");
-        sharetext=title+"- ";
+        sharetext=snapshot.val().title+"- ";
         if(videokeyyoutube!=null){
             document.getElementById("mainyoutubediv").style.display="block";
             mainyoutubeiframe.src=mainyoutubeiframe.src+videokeyyoutube;
