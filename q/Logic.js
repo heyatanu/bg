@@ -28,6 +28,7 @@ firebase.database().ref('session/' + query).on('value', function(snapshot) {
         title.innerHTML=snapshot.val().title;
         document.title=snapshot.val().title;
             sharetext=snapshot.val().title+"- ";
+            shareurl=document.getElementById("homepage").href+"q/?q="+id;
         discription.innerHTML=snapshot.val().discription;
         let youfiurl=snapshot.val().ytubevdolink;
         youfiurl=youfiurl.trim();
