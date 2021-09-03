@@ -27,13 +27,17 @@ firebase.database().ref('session/' + query).on('value', function(snapshot) {
         mainimg.src=snapshot.val().imageurl;
         title.innerHTML=snapshot.val().title;
         document.title=snapshot.val().title;
+            sharetext=snapshot.val().title+"- ";
         discription.innerHTML=snapshot.val().discription;
-        var youurl = new URL(snapshot.val().ytubevdolink);
-        var videokeyyoutube = youurl.searchParams.get("v");
-        sharetext=snapshot.val().title+"- ";
-        if(videokeyyoutube!=null){
-            document.getElementById("mainyoutubediv").style.display="block";
-            mainyoutubeiframe.src=mainyoutubeiframe.src+videokeyyoutube;
+        let youfiurl=snapshot.val().ytubevdolink;
+        youfiurl=youfiurl.trim();
+        if(youfiurl!=""){
+            var youurl = new URL(snapshot.val().ytubevdolink);
+            var videokeyyoutube = youurl.searchParams.get("v");
+            if(videokeyyoutube!=null){
+                document.getElementById("mainyoutubediv").style.display="block";
+                mainyoutubeiframe.src=mainyoutubeiframe.src+videokeyyoutube;
+            }
         }
         expiredate.innerText=snapshot.val().expiredate;
 
