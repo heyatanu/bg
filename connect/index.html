@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimal Meet</title>
+  
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="initialfirebase.js"></script>
+</head>
+<body>
+
+  <div id="lobby-container" class="fade-in">
+    <div class="glass-panel">
+      <h1>Hello.</h1>
+      <p class="subtitle">Ready to join?</p>
+
+      <div id="setup-panel">
+        <input id="usernameInput" placeholder="Your Name" autocomplete="off">
+        <button id="mainJoinBtn" class="btn-main" style="display:none;">Join Call</button>
+
+        <div id="manual-entry">
+          <button id="createBtn" class="btn-primary">Start New Meeting</button>
+          <div class="divider">or</div>
+          <div class="join-row">
+            <input id="joinInput" placeholder="Enter Room ID" autocomplete="off">
+            <button id="joinBtn" class="btn-icon"><i class="material-icons">arrow_forward</i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="room-container">
+    <div class="video-grid">
+      <div class="video-wrapper cam-off" id="localWrapper">
+        <video id="localVideo" autoplay playsinline muted></video>
+        <div class="avatar-circle" id="localAvatar"></div>
+        <div class="name-tag">
+          <span id="localNameTag">You</span>
+          <div class="status-icons">
+            <i class="material-icons" id="localMicIcon">mic_off</i>
+            <i class="material-icons" id="localCamIcon">videocam_off</i>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-wrapper" id="remoteWrapper">
+        <video id="remoteVideo" autoplay playsinline></video>
+        <div class="avatar-circle" id="remoteAvatar">?</div>
+        <div class="name-tag">
+          <span id="remoteNameTag">Waiting...</span>
+          <div class="status-icons">
+            <i class="material-icons" id="remoteMicIcon">mic</i>
+            <i class="material-icons" id="remoteCamIcon">videocam</i>
+          </div>
+        </div>
+        <div id="remoteStatus" class="status-message">Left the call</div>
+      </div>
+    </div>
+
+    <div id="chat-panel" class="chat-panel">
+      <div class="chat-header">
+        <span>Chat</span>
+        <button id="closeChatBtn"><i class="material-icons">close</i></button>
+      </div>
+      <div id="chat-messages" class="chat-messages">
+        <div id="chatEmptyState" class="empty-state">
+          <i class="material-icons">chat_bubble_outline</i>
+          <p>No messages yet.<br>Say hello!</p>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input id="msgInput" placeholder="Type a message..." autocomplete="off">
+        <button id="sendMsgBtn"><i class="material-icons">send</i></button>
+      </div>
+    </div>
+
+    <div class="control-dock">
+      <button id="toggleMic" class="dock-btn inactive" title="Mic">
+        <i class="material-icons">mic_off</i>
+      </button>
+      <button id="toggleCam" class="dock-btn inactive" title="Camera">
+        <i class="material-icons">videocam_off</i>
+      </button>
+      <button id="toggleChat" class="dock-btn inactive" title="Chat">
+        <i class="material-icons">chat_bubble</i>
+        <div id="chatNotification" class="notification-dot"></div>
+      </button>
+      <button id="shareBtn" class="dock-btn share" title="Invite">
+        <i class="material-icons">add_link</i>
+      </button>
+      <button id="hangupBtn" class="dock-btn hangup" title="Leave">
+        <i class="material-icons">close</i>
+      </button>
+    </div>
+  </div>
+
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal-card">
+      <h3>Invite People</h3>
+      <p>Share this link or code</p>
+      <div id="modalCode" class="code-box">...</div>
+      <div class="modal-actions">
+        <button id="copyCodeBtn" class="btn-secondary">Copy Code</button>
+        <button id="copyLinkBtn" class="btn-primary">Copy Link</button>
+      </div>
+      <button id="closeModalBtn" class="btn-text">Close</button>
+    </div>
+  </div>
+
+  <div id="alertOverlay" class="alert-overlay">
+    <div class="alert-card">
+      <div class="alert-icon"><i class="material-icons">info</i></div>
+      <h3 id="alertTitle">Notice</h3>
+      <p id="alertMessage">Something happened.</p>
+      <button id="alertCloseBtn" class="btn-primary">Okay</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
